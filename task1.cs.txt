@@ -5,7 +5,7 @@ class Program
 {
     static void Main()
     {
-        string regexPattern = @"^(?=.*SP)(?=.*[A-Z])(?=.*[!@#$%^&*()_+]{2})(?=.*[khuzafi]{4}).{1,12}$";
+        string regexPattern = @"^(?=.*SP)(?=.*[A-Z])(?=.*[!@#$%^&*()_+]{2})(?=.*[zohaib]{4}).{1,12}$";
         Regex regex = new Regex(regexPattern);
 
         // Test cases
@@ -15,7 +15,7 @@ class Program
             "SP#khuza", // Invalid (more than 12 characters)
             "sp!@khu", // Invalid (no uppercase)
             "SP!khu", // Invalid (only one special character)
-            "SP!@xyz" // Invalid (does not contain 4 letters from "khuzaifa")
+            "SP!@xyz" // Invalid (does not contain 4 letters from "zohaib")
         };
 
         foreach (var testCase in testCases)
