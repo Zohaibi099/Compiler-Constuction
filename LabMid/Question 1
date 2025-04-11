@@ -1,45 +1,40 @@
 using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
-        // Ask the user to enter input in a specific format
-        Console.WriteLine("Enter the input string in format: x:2; y:3; z:4; result: x * y + z;");
-        string input = Console.ReadLine(); // Read input string from the console
+        // Roll number last two digits (for example: 60)
+        int studentIdSuffix = 60;
 
-        // Extract integer values for x, y, and z from the input string
-        int x_28 = int.Parse(GetValue(input, "x")); // Using last two digits of Student ID (28)
-        int y = int.Parse(GetValue(input, "y"));
-        int z = int.Parse(GetValue(input, "z"));
+        // Extract digits and construct variable names (e.g., var6 and var0)
+        string var6 = "var" + studentIdSuffix.ToString()[0]; // First digit of roll number suffix
+        string var0 = "var" + studentIdSuffix.ToString()[1]; // Second digit of roll number suffix
 
-        // Calculate the result of the expression: x * y + z
-        int result = x_28 * y + z;
+        // Manually assigning values to x and y corresponding to var6 and var0
+        double x = 2; // Value associated with var6 (represents x)
+        double y = 8; // Value associated with var0 (represents y)
 
-        // Display the extracted variables and the calculated result
-        Console.WriteLine("x_28 = " + x_28);
-        Console.WriteLine("y = " + y);
-        Console.WriteLine("z = " + z);
-        Console.WriteLine("Result = " + result);
-    }
+        // Prompt user to enter value for z
+        Console.Write("Enter value for z: ");
+        string zInput = Console.ReadLine();
 
-    // Method to extract the value of a variable from the input string
-    static string GetValue(string input, string variable)
-    {
-        // Split the input string into parts using ';' as the delimiter
-        string[] parts = input.Split(';');
-
-        // Loop through each part and find the one that starts with the given variable
-        foreach (string part in parts)
+        // Try parsing the input value of z
+        if (!double.TryParse(zInput, out double z))
         {
-            if (part.Trim().StartsWith(variable + ":"))
-            {
-                // Return the value part (after the ':') with surrounding whitespace removed
-                return part.Split(':')[1].Trim();
-            }
+            Console.WriteLine("Invalid input for z.");
+            return; // Exit the program if parsing fails
         }
 
-        // If the variable is not found, return "0" as a default value
-        return "0";
+        // Perform the calculation: result = x * y + z
+        double result = x * y + z;
+
+        // Display the values and the result
+        Console.WriteLine($"\n{var6} (x) = {x}");
+        Console.WriteLine($"{var0} (y) = {y}");
+        Console.WriteLine($"z = {z}");
+        Console.WriteLine($"Result = {x} * {y} + {z} = {result}");
     }
 }
