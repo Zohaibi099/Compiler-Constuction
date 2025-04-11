@@ -1,0 +1,45 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Ask the user to enter input in a specific format
+        Console.WriteLine("Enter the input string in format: x:2; y:3; z:4; result: x * y + z;");
+        string input = Console.ReadLine(); // Read input string from the console
+
+        // Extract integer values for x, y, and z from the input string
+        int x_28 = int.Parse(GetValue(input, "x")); // Using last two digits of Student ID (28)
+        int y = int.Parse(GetValue(input, "y"));
+        int z = int.Parse(GetValue(input, "z"));
+
+        // Calculate the result of the expression: x * y + z
+        int result = x_28 * y + z;
+
+        // Display the extracted variables and the calculated result
+        Console.WriteLine("x_28 = " + x_28);
+        Console.WriteLine("y = " + y);
+        Console.WriteLine("z = " + z);
+        Console.WriteLine("Result = " + result);
+    }
+
+    // Method to extract the value of a variable from the input string
+    static string GetValue(string input, string variable)
+    {
+        // Split the input string into parts using ';' as the delimiter
+        string[] parts = input.Split(';');
+
+        // Loop through each part and find the one that starts with the given variable
+        foreach (string part in parts)
+        {
+            if (part.Trim().StartsWith(variable + ":"))
+            {
+                // Return the value part (after the ':') with surrounding whitespace removed
+                return part.Split(':')[1].Trim();
+            }
+        }
+
+        // If the variable is not found, return "0" as a default value
+        return "0";
+    }
+}
